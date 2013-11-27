@@ -9,9 +9,39 @@ html,body {
 #mapDiv {
 	padding:0;
 	margin:0;
-	width:100%;
+	width: auto;
+	height: 100%;
+}
+
+#wrapper {
+	overflow: hidden;
+	height: 100%;
+}
+
+#tableDiv {	
+	float: right;
+	overflow: hidden;s
+	padding:0;
+	margin:0;
+	width:300px;
 	height:100%;
 }
+
+@media (max-width: 600px) {
+   	#tableDiv {
+   		display: none;
+		}	
+}
+
+@media (max-width: 800px) {
+   	#tableDiv {   		
+		padding:0;
+		margin:0;
+		width:200px;
+		height:100%;
+		}	
+}
+
 
 .esriRTL label {
 /*Example of a rule that will be applied if the app is viewed in a browser wtih a RTL locale like Hebrew or Arabic.*/

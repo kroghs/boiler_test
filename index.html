@@ -8,10 +8,24 @@
     <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.7/js/esri/css/esri.css">
     <!--Load any application specific styles-->
     <link rel="stylesheet" type="text/css" href="css/main.css">
+     <script type="text/javascript" src="js/raphael-min.js"></script>
+    <script type="text/javascript" src="js/g.raphael-min.js"></script>
+
 </head>
 <body class="claro">
    <!--The ArcGIS API for JavaScript provides bidirectional support.  When viewing the application in an right to left (rtl) language like Hebrew and Arabic the map needs to remain in left-to-right (ltr) mode. Specify this by setting the dir attribute on the div to ltr. --> 
-   <div id="mapDiv" dir="ltr"></div>
+   
+   <div id="wrapper">
+    <div id="tableDiv">
+
+      
+
+    </div>
+    <div id="mapDiv" dir="ltr"></div>
+   </div>
+
+
+
     <script type="text/javascript">
         var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
         var dojoConfig = {
@@ -54,7 +68,38 @@
                 //In this example we have one called theme. 
                 Main(config);
             });
+
+ 
+            
+       
+
         });
     </script>   
+
+
+      <script>
+        var v1_color = #ff0000;
+        var v2_color = #00ff00;
+        var v3_color = #0000ff;
+
+        var r = Raphael("tableDiv");
+        var pie = r.piechart(320, 320, // center
+                     250,      // radius
+                     [
+                         1,
+                         12,
+                         23
+                     ],
+                     {
+                         colors       : [
+                                            v1_color,
+                                            v2_color,
+                                            v3_color
+                                        ],
+                          matchColors : true
+                     });
+
+
+        </script>
 </body>
 </html>
