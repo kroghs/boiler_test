@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ArcGIS Application Boilerplate</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/chart.css">
+    <script type="text/javascript" src="js/raphael-min.js"></script>
+    <script type="text/javascript" src="js/g.raphael-min.js"></script>
+    <script type="text/javascript" src="js/g.pie-min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="wrapper" >
+    </div>
+
+
+    <script>
+/*
+var r = Raphael("wrapper");
+// Creates pie chart at with center at 320, 200,
+// radius 100 and data: [55, 20, 13, 32, 5, 1, 2]
+r.piechart(320, 240, 100, [55, 20, 13, 32, 5, 1, 2]);
+*/
+    var v1_color = '#ff0000';
+    var v2_color = '#00ff00';
+    var v3_color = '#0000ff';
+
+    var r = Raphael("wrapper");
+    var pie = r.piechart(100, 100, // center
+        50, // radius
+        [
+            1,
+            12,
+            23
+        ], {
+            colors: [
+                v1_color,
+                v2_color,
+                v3_color
+            ],
+            matchColors: true
+        });
+
+    </script> 
+</body>
+
+</html>
