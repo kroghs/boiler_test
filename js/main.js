@@ -31,35 +31,60 @@ define([
                     var value1 = 0;
                     var value2 = 0;
                     var value3 = 0;
+                    var value4 = 0;
 
                     dojo.forEach(event.target.graphics, function(row) {
-                        if (row.attributes["Status"] === 0) //klar
+                        if (row.attributes["StructureState"] === 0) // god
                         {
                             value1++;
-                        } else if (row.attributes["Status"] === 1) //I Gang
+                        } else if (row.attributes["StructureState"] === 1) // tvivlsom
                         {
                             value2++;
-                        } else if (row.attributes["Status"] === 3) //afsluttet
+                        } else if (row.attributes["StructureState"] === 2) // dårlig
                         {
                             value3++;
+                        } else if (row.attributes["StructureState"] === 3) // defekt
+                        {
+                            value4++;
                         }
                     });
 
-                    var v1_color = '#ff0000';
-                    var v2_color = '#00ff00';
-                    var v3_color = '#0000ff';
-
+                    var v1_color = '#00FF00'; // grøn
+                    var v2_color = '#FFFF00'; // gul
+                    var v3_color = '#FF9900'; // orange
+                    var v4_color = '#FF0000'; // rød
+                                       
                     var r = Raphael("tableDiv");
                     var pie = r.piechart(150, 150, // center
                         100, // radius
-                        [value1, value2, value3], {
+                        [value1*1000+1, value2*1000+1, value3*1000+1, value4*1000+1], {
                             colors: [
                                 v1_color,
                                 v2_color,
-                                v3_color
-                            ],
+                                v3_color,
+                                v4_color
+                            ], 
+                            legend: ["God [" + value1 + "]", "Tvivlsom [" + value2 + "]","Dårlig [" + value3 + "]","Defekt [" + value4 + "]"], legendpos: "south", 
                             matchColors: true
                         });
+
+                     pie.hover(function () {
+                        this.sector.stop();
+                        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+
+                        if (this.label) {
+                            this.label[0].stop();
+                            this.label[0].attr({ r: 7.5 });
+                            this.label[1].attr({ "font-weight": 800 });
+                        }
+                        }, function () {
+                            this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+
+                            if (this.label) {
+                                this.label[0].animate({ r: 5 }, 500, "bounce");
+                                this.label[1].attr({ "font-weight": 400 });
+                        }
+                    });
 
                 }
 
